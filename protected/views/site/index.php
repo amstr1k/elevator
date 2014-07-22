@@ -10,7 +10,7 @@
 <?= CHtml::submitButton('Вперёд') ?>
 <?= CHtml::endForm() ?>
 
-<? if (!count(OrderElevator::model()->find(array('condition' => 'status= ' . OrderElevator::STATUS_ACTIVE . ' AND is_auto=0')))) { ?>
+<? if (!count(OrderElevator::model()->find(array('condition' => 'status= ' . OrderElevator::STATUS_ACTIVE)))) { ?>
   <?php $form = $this->beginWidget('CActiveForm', array(
     'action'      => Yii::app()->createUrl('site/create'),
     'htmlOptions' => array('enctype' => 'multipart/form-data', 'class' => 'order'),
