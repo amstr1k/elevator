@@ -42,8 +42,7 @@ return array(
       'rules' => array(
         '/' => 'site/index',
         '/init' => 'site/init',
-        '/elevator/:id' => 'site/elevator/',
-        '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/elevator',
+        '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
       ),
 		),
 
@@ -66,7 +65,7 @@ return array(
         array(
           'class'=>'CProfileLogRoute',
           'levels'=>'error, warning, trace, profile, info',
-          'enabled'=>true,
+          'enabled'=>false,
         ),
     ),
 ),

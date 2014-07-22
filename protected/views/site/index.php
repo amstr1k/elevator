@@ -1,25 +1,21 @@
-<?php
-
-$this->pageTitle=Yii::app()->name;
-?>
-
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<?php $this->pageTitle = Yii::app()->name; ?>
 
 <?php $this->widget('zii.widgets.CListView', array(
   'dataProvider' => $dataProvider,
-  'summaryText' => false,
-  'itemView' => '_view',
+  'summaryText'  => false,
+  'itemView'     => '_view',
 )); ?>
 
 <?= CHtml::form('/', 'post') ?>
-<?= CHtml::submitButton('Вперёд')?>
-<?= CHtml::endForm()?>
+<?= CHtml::submitButton('Вперёд') ?>
+<?= CHtml::endForm() ?>
 
-<?php $form = $this->beginWidget('CActiveForm', array(
-  'action' => Yii::app()->createUrl('site/create'),
-  'htmlOptions' => array('enctype'=>'multipart/form-data', 'class' => 'order'),
-));
-?>
+<? if (!count(OrderElevator::model()->find(array('condition' => 'status= ' . OrderElevator::STATUS_ACTIVE . ' AND is_auto=0')))) { ?>
+  <?php $form = $this->beginWidget('CActiveForm', array(
+    'action'      => Yii::app()->createUrl('site/create'),
+    'htmlOptions' => array('enctype' => 'multipart/form-data', 'class' => 'order'),
+  ));
+  ?>
   <div>
     <div>
       <?= $form->error($model, 'start_floor', array('class' => 'error')) ?>
@@ -33,6 +29,5 @@ $this->pageTitle=Yii::app()->name;
     </div>
     <button class="btn btn-info" type="submit">Отправить</button>
   </div>
-
-  <!-- end form -->
-<?php $this->endWidget(); ?>
+  <?php $this->endWidget(); ?>
+<? } ?>
